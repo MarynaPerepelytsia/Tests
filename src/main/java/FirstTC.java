@@ -59,6 +59,7 @@ public class FirstTC extends TestCase {
 
     @AfterClass
     public void closeBrowser() {
+
         driver.quit();
     }
 }
