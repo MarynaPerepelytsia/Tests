@@ -34,8 +34,9 @@ public class SkillsUpTeachers extends BaseClass {
         weblement.click();
         weblement = driver.findElement(By.xpath("//a[@href=\"http://skillsup.ua/about/our-team/michael-chokan.aspx\"]"));
         weblement.click();
+        weblement = driver.findElement(By.xpath("//div[@class='greenHeader']"));
         System.out.println("Teacher - Mihail Chokan");
-        //assertEquals(ourTeam, weblement.getAttribute("src"));
+        assertEquals("Михаил Чокан", weblement.getText());
     }
     @Test
     public void testFoundTeacherKarpov() throws NoSuchElementException {
