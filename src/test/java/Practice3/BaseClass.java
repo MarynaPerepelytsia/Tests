@@ -14,17 +14,18 @@ import java.util.concurrent.TimeUnit;
  * Created by mperep on 16.04.2016.
  */
 public class BaseClass extends TestCase{
-    protected static WebDriver driver = new FirefoxDriver();
+    protected static WebDriver driver;
 
 
-    @Before
+    @BeforeClass
     public void setUp() throws Exception{
+        driver = new FirefoxDriver();
         driver.get("http://skillsup.ua/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
 
-    @After
+    @AfterClass
     public void tearDown() throws Exception{
         driver.quit();
     }
