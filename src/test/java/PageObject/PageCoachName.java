@@ -19,6 +19,7 @@ public class PageCoachName {
     private By cardChokan = By.xpath("//img[@src='/media/22166/Michael-Chokan_P.jpg']");
     private By infoAboutCoach = By.className("text");
     private By nameGalkovskiy = By.xpath("//div[@class='greenHeader']");
+    private By nameChokan = By.xpath("//div[@class='greenHeader']");
 
     public void findInfoAboutCoachGalkovsckiy() {
         WebElement imageGalkovskiy = driver.findElement(cardGalkovskiy);
@@ -34,6 +35,16 @@ public class PageCoachName {
         WebElement firstnameLastname = driver.findElement(nameGalkovskiy);
         firstnameLastname.getText();
         }
+
+    public void findNameForChokan () {
+        WebElement lastnameChokan = driver.findElement(nameChokan);
+        lastnameChokan.getText();
+    }
+
+    public void findCourseForChokan () {
+        WebElement textaboutcoachChocan = driver.findElement(infoAboutCoach);
+        ????
+    }
 
     public void findInfoAboutCoachChokan() {
         WebElement imageChokan = driver.findElement(cardChokan);
