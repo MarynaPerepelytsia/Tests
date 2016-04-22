@@ -15,46 +15,39 @@ import java.util.List;
 public class PageCoachName {
     private WebDriver driver;
     private static String baseURL = "http://skillsup.ua/";
-    private By cardGalkovskiy = By.xpath("//img[@src='/media/22116/Alexander-Galkovskiy_P.jpg']");
-    private By cardChokan = By.xpath("//img[@src='/media/22166/Michael-Chokan_P.jpg']");
+    private By memberclass = By.className("name");
     private By infoAboutCoach = By.className("text");
-    private By nameGalkovskiy = By.xpath("//div[@class='greenHeader']");
-    private By nameChokan = By.xpath("//div[@class='greenHeader']");
+    private By searchheader = By.xpath("//div[@class='greenHeader']");
+    private String coach;
 
-    public void findInfoAboutCoachGalkovsckiy() {
-        WebElement imageGalkovskiy = driver.findElement(cardGalkovskiy);
-        Actions openInfoAboutCoachGalkovskiy = new Actions(driver);
-        openInfoAboutCoachGalkovskiy.moveToElement(imageGalkovskiy).click().perform();
-    }
-
-    public void findCourseForGalkovskyi () {
-        WebElement textaboutcoach = driver.findElement(infoAboutCoach);
-        textaboutcoach.getAttribute("Погружение в Java");
-    }
-    public void findNameForGalkovskyi () {
-        WebElement firstnameLastname = driver.findElement(nameGalkovskiy);
-        firstnameLastname.getText();
-        }
-
-    public void findNameForChokan () {
-        WebElement lastnameChokan = driver.findElement(nameChokan);
-        lastnameChokan.getText();
-    }
-
-    public void findCourseForChokan () {
-        WebElement textaboutcoachChocan = driver.findElement(infoAboutCoach);
-        ????
-    }
-
-    public void findInfoAboutCoachChokan() {
-        WebElement imageChokan = driver.findElement(cardChokan);
-        Actions openInfoAboutCoachChokan = new Actions(driver);
-        openInfoAboutCoachChokan.moveToElement(imageChokan).click().perform();
-    }
     public PageCoachName(WebDriver driver){
         this.driver = driver;
         driver.get(baseURL);
         PageFactory.initElements(driver, this );
     }
+
+    public void openPersonalInfoPage(String name){
+        List<WebElement> webElements = driver.findElements(memberclass);
+        for (WebElement i : webElements){
+            if (i.getText().contains(name)){
+                i.click();
+                break;
+            }
+        }
+    }
+
+    public Boolean searcnPersonalPage(String person){
+        openPersonalInfoPage(coach);
+        System.out.println(driver.findElement(searchheader).getText());
+        return driver.findElement(searchheader).getText().contains(person);
+    }
+
+    public Boolean searchCourcesOfCoach(String cources){
+        openPersonalInfoPage(coach);
+        System.out.println(driver.findElement(infoAboutCoach).getText());
+        return driver.findElement(infoAboutCoach).getText().contains(cources);
+    }
+
+
 
 }
