@@ -83,5 +83,38 @@ public class SearchSkillsUpTeachers extends BaseClass{
         pageCoachName.openPersonalInfoPage(nameCoach);
         assertTrue("This cource is not Координатор учебного курса", pageCoachName.searchCourcesOfCoach(coachCources));
     }
-
+    
+    @Test
+    public void await () throws Exception{
+      skillsUpMainPage = new SkillsUpMainPage(driver);
+        pageCoachName = new PageCoachName(driver);
+        skillsUpMainPage.goToCoachPage();
+        pageCoachName.waitNameIsLoaded();
+    }
+    
+    @Test
+       public void awaitUntilAlertIsPresent () throws Exception {
+        skillsUpMainPage = new SkillsUpMainPage(driver);
+        pageCoachName = new PageCoachName(driver);
+        skillsUpMainPage.goToCoachPage();
+        pageCoachName.waitAlertIsPresent();
+    }
+    
+    @Test
+    public void callJavascriptAlert() throws Exception {
+        skillsUpMainPage = new SkillsUpMainPage(driver);
+        pageCoachName = new PageCoachName(driver);
+        skillsUpMainPage.goToCoachPage();
+        assertEquals("Ольга Симчак", pageCoachName.callJavascriptAlert());
+    }
+    
+    @Test
+    public void alertAccept () throws Exception {
+        skillsUpMainPage = new SkillsUpMainPage(driver);
+        pageCoachName = new PageCoachName(driver);
+        skillsUpMainPage.goToCoachPage();
+        pageCoachName.callJavascript();
+        assertEquals("hello world", pageCoachName.getTextFromAlert());
+        pageCoachName.pressOkButtonOnAlert();
+    }
 }
