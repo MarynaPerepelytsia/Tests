@@ -45,7 +45,36 @@ public class PageCoachName {
         System.out.println(driver.findElement(infoAboutCoach).getText());
         return driver.findElement(infoAboutCoach).getText().contains(cources);
     }
-
-
-
+    
+    public void waitNameIsLoaded () {
+        driver.findElement(memberclass);
+        WebDriver wait = new WebDriverWait(driver, 15);
+        wait.until(ExpextedConditions.textToBe (memberclass, "LOL"));
+    }
+    
+    public void waitAlertIsPresent () {
+        driver.findElement(memberclass);
+        WebDriver wait = new WebDriverWait(driver, 15);
+        wait.until(ExpextedConditions.aleretIsPresent());
+    }
+    
+    public void callJavascript () {
+         ((JavascriptExecutor)driver).executeScript("alert('hello world');");
+    }
+    
+    public String callJavascriptAlert(){
+        WebElement element = (WebElement) ((JavascriptExecutor)driver)
+        .executeScript("return document.getElementsByClassName('name'[0];)");
+        return element.getText();
+    }
+    
+    public void pressOkButtonOnAlert () {
+        driver.switchTo().alert().accept();
+    }
+    
+    public String getTextFromAlert (){
+        return driver.switchTo().alert().getText();
+    }
+    
 }
+
