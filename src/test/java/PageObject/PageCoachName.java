@@ -1,11 +1,14 @@
 package PageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -48,14 +51,14 @@ public class PageCoachName {
     
     public void waitNameIsLoaded () {
         driver.findElement(memberclass);
-        WebDriver wait = new WebDriverWait(driver, 15);
-        wait.until(ExpextedConditions.textToBe (memberclass, "LOL"));
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.textToBe (memberclass, "LOL"));
     }
     
     public void waitAlertIsPresent () {
         driver.findElement(memberclass);
-        WebDriver wait = new WebDriverWait(driver, 15);
-        wait.until(ExpextedConditions.aleretIsPresent());
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.alertIsPresent());
     }
     
     public void callJavascript () {
