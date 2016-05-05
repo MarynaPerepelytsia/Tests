@@ -59,7 +59,6 @@ public class PageForTrainings {
     }
 
     public String nameOfCources(){
-        openInfoCources(nameCource);
         System.out.println(driver.findElement(headerofCource).getText());
         return driver.findElement(headerofCource).getText();
     }
