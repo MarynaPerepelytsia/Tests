@@ -1,5 +1,6 @@
 package PageObject;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by mperep on 04.05.2016.
@@ -20,11 +23,11 @@ public class PageForTrainings {
     private String baseURL = "http://skillsup.ua/";
     private By training = By.xpath("//a[@href='http://skillsup.ua/training.aspx']");
     private By cources = By.xpath("//a[@href='http://skillsup.ua/training/courses.aspx']");
-    private By titlecources = By.className("title");
+    private By titlecources = By.cssSelector("div.title>a");
     private By headerofCource = By.className("greenHeader");
-    private By teacherName = By.className("name");
+    private By teacherName = By.xpath("//div[@class='name']");
     private By buttonSubmit = By.xpath("//a[contains(.,' Оставить заявку')]");
-    private String nameCource;
+    private String cource;
 
     public PageForTrainings (WebDriver driver){
         this.driver = driver;
@@ -52,32 +55,40 @@ public class PageForTrainings {
         }
     }
 
-    public void waitListCourcesIsloaded(){
-        driver.findElement(titlecources);
-        WebDriverWait wait = new WebDriverWait(driver, 15);
-        //wait.until(ExpectedConditions.elementToBeSelected(listcources));
-    }
-
     public String nameOfCources(){
-        openInfoCources(nameCource);
         System.out.println(driver.findElement(headerofCource).getText());
         return driver.findElement(headerofCource).getText();
     }
 
-    public void nameOfTeacher (String teacher){
-        openInfoCources(nameCource);
+    public String nameOfTeacher (){
         System.out.println(driver.findElement(teacherName).getText());
-        driver.findElement(teacherName).getText().contains(teacher);
+        return driver.findElement(teacherName).getText();
     }
 
     public void pressSubmitYourApplicationButton(){
-        openInfoCources(nameCource);
         WebElement submitYouAppButton = driver.findElement(buttonSubmit);
         Actions submitbutton = new Actions(driver);
         submitbutton.moveToElement(submitYouAppButton).click().perform();
     }
 
+    public void goToPopUp(){
+        String parentWindowHandler = driver.getWindowHandle(); // Store your parent window
+        String subWindowHandler = null;
+
+        Set<String> handles = driver.getWindowHandles(); // get all window handles
+        Iterator<String> iterator = handles.iterator();
+        while (iterator.hasNext()){
+            subWindowHandler = iterator.next();
+        }
+        driver.switchTo().window(subWindowHandler); // switch to popup window
+        // perform operations on popup
+
+        //driver.switchTo().window(parentWindowHandler);
+    }
 
 
 
+   // public void getSwitchToAlert(){
+        //return driver.switchTo().alert().accept();
+    //}
 }
