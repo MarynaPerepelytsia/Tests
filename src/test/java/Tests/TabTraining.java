@@ -11,8 +11,9 @@ public class TabTraining extends BaseClass {
     PageForTrainings pageForTrainings;
 
 
-    @Test
-    public void testNameOfCource() throws Exception{
+    // Tests for first cource "Основы веб-дизайна"
+
+    public void testNameOfCourceWebDesignFundamentals() throws Exception{ //Test verifies that name of cource is "Основы веб-дизайна"
         String cource = "Основы веб-дизайна";
         pageForTrainings = new PageForTrainings(driver);
         pageForTrainings.goToCourcesTab();
@@ -20,29 +21,40 @@ public class TabTraining extends BaseClass {
         assertEquals("It is not right cource", "Web Design Fundamentals (Основы веб-дизайна)", pageForTrainings.nameOfCources());
     }
 
-    @Test
-    public void testNameOfTeacherforFirstCource() throws Exception {
+    public void testNameOfTeacherForCourceWebDesignFundamentals() throws Exception { // Test verifies that teacher`s name is "Наталья Абраменко" for cource "Основы веб-дизайна"
         String cource = "Основы веб-дизайна";
         pageForTrainings = new PageForTrainings(driver);
         pageForTrainings.goToCourcesTab();
         pageForTrainings.openInfoCources(cource);
-        assertEquals("It is not right teacher", "Наталья Абраменко",pageForTrainings.nameOfTeacher());
+        assertEquals("Teacher is not Наталья Абраменко", "Наталья Абраменко",pageForTrainings.nameOfTeacher());
     }
 
-    @Test
-    public void testRequestForFirstCource() throws Exception {
+    public void testRequestForCourceWebDesignFundamentals() throws Exception { //Test verifies that pop up is present after clicking 'Оставить заявку' button for cource "Основы веб-дизайна"
         String cource = "Основы веб-дизайна";
         pageForTrainings = new PageForTrainings(driver);
         pageForTrainings.goToCourcesTab();
         pageForTrainings.openInfoCources(cource);
         pageForTrainings.pressSubmitYourApplicationButton();
         pageForTrainings.goToPopUp();
-        //assertTrue("Alert is not present", );
+        assertTrue("Alert is not present.", pageForTrainings.popUpIsPresent());
     }
 
+    public void testNameOfFieldsOnPopUpForCourceWebDesignFundamentals() throws Exception{ //Test verifies that all field is present on pop up for cource "Основы веб-дизайна"
+        String cource = "Основы веб-дизайна";
+        pageForTrainings = new PageForTrainings(driver);
+        pageForTrainings.goToCourcesTab();
+        pageForTrainings.openInfoCources(cource);
+        pageForTrainings.pressSubmitYourApplicationButton();
+        pageForTrainings.goToPopUp();
+        assertEquals("Name of fileds is not Имя", "Имя", pageForTrainings.findNmaeforFields().get(0));
+        assertEquals("Name of fileds is not Фамилия", "Фамилия", pageForTrainings.findNmaeforFields().get(1));
+        assertEquals("Name of fileds is not Электронная почта", "Электронная почта", pageForTrainings.findNmaeforFields().get(2));
+        assertEquals("Name of fileds is not Телефон", "Телефон", pageForTrainings.findNmaeforFields().get(3));
+    }
 
-    @Test
-    public void testNameofSecondCource() throws Exception{
+    //Tests for second cource "Эффективный лидер"
+
+    public void testNameCourceEffectiveLeader() throws Exception{ //Test verifies that name of cource is "Эффективный лидер"
         String cource = "Эффективный лидер";
         pageForTrainings = new PageForTrainings(driver);
         pageForTrainings.goToCourcesTab();
@@ -50,8 +62,7 @@ public class TabTraining extends BaseClass {
         assertEquals("It is not right cource", "Effective Leader (Эффективный лидер)", pageForTrainings.nameOfCources());
     }
 
-    @Test
-    public void testNameOfTeacherforSecondCource() throws Exception {
+    public void testNameOfTeacherforCourceEffectiveLeader() throws Exception { // Test verifies that teacher`s name is "Марина Мельник" for cource "Эффективный лидер"
         String cource = "Эффективный лидер";
         pageForTrainings = new PageForTrainings(driver);
         pageForTrainings.goToCourcesTab();
@@ -59,8 +70,32 @@ public class TabTraining extends BaseClass {
         assertEquals("It is not right teacher", "Марина Мельник",pageForTrainings.nameOfTeacher());
     }
 
-    @Test
-    public void testNameofThirdCource() throws Exception{
+    public void testRequestForCourceEffectiveLeader() throws Exception { //Test verifies that pop up is present after clicking 'Оставить заявку' button for cource "Эффективный лидер"
+        String cource = "Эффективный лидер";
+        pageForTrainings = new PageForTrainings(driver);
+        pageForTrainings.goToCourcesTab();
+        pageForTrainings.openInfoCources(cource);
+        pageForTrainings.pressSubmitYourApplicationButton();
+        pageForTrainings.goToPopUp();
+        assertTrue("Alert is not present.", pageForTrainings.popUpIsPresent());
+    }
+
+    public void testNameOfFieldsOnPopUpForCourceEffectiveLeader() throws Exception{ //Test verifies that all field is present on pop up for cource "Основы веб-дизайна"
+        String cource = "Эффективный лидер";
+        pageForTrainings = new PageForTrainings(driver);
+        pageForTrainings.goToCourcesTab();
+        pageForTrainings.openInfoCources(cource);
+        pageForTrainings.pressSubmitYourApplicationButton();
+        pageForTrainings.goToPopUp();
+        assertEquals("Name of fileds is not Имя", "Имя", pageForTrainings.findNmaeforFields().get(0));
+        assertEquals("Name of fileds is not Фамилия", "Фамилия", pageForTrainings.findNmaeforFields().get(1));
+        assertEquals("Name of fileds is not Электронная почта", "Электронная почта", pageForTrainings.findNmaeforFields().get(2));
+        assertEquals("Name of fileds is not Телефон", "Телефон", pageForTrainings.findNmaeforFields().get(3));
+    }
+
+    //Tests for third cource "Погружение в разработку под Android"
+
+    public void testNameCourceDivingIntoAndroidDevelopment() throws Exception{ //Test verifies that name of cource is "Погружение в разработку под Android"
         String cource = "Погружение в разработку под Android";
         pageForTrainings = new PageForTrainings(driver);
         pageForTrainings.goToCourcesTab();
@@ -68,8 +103,7 @@ public class TabTraining extends BaseClass {
         assertEquals("It is not right cource", "Diving into Android Development (Погружение в разработку под Android)", pageForTrainings.nameOfCources());
     }
 
-    @Test
-    public void testNameOfTeacherforThirdCource() throws Exception {
+    public void testNameOfTeacherforCourceDivingIntoAndroidDevelopment() throws Exception { // Test verifies that teacher`s name is "Дмитрий Ильченко" for cource "Погружение в разработку под Android"
         String cource = "Погружение в разработку под Android";
         pageForTrainings = new PageForTrainings(driver);
         pageForTrainings.goToCourcesTab();
@@ -77,6 +111,27 @@ public class TabTraining extends BaseClass {
         assertEquals("It is not right teacher", "Дмитрий Ильченко",pageForTrainings.nameOfTeacher());
     }
 
+    public void testRequestForCourceDivingIntoAndroidDevelopment() throws Exception { //Test verifies that pop up is present after clicking 'Оставить заявку' button for cource "Погружение в разработку под Android"
+        String cource = "Погружение в разработку под Android";
+        pageForTrainings = new PageForTrainings(driver);
+        pageForTrainings.goToCourcesTab();
+        pageForTrainings.openInfoCources(cource);
+        pageForTrainings.pressSubmitYourApplicationButton();
+        pageForTrainings.goToPopUp();
+        assertTrue("Alert is not present.", pageForTrainings.popUpIsPresent());
+    }
 
+    public void testNameOfFieldsOnPopUpForCourceDivingIntoAndroidDevelopment() throws Exception{ //Test verifies that all field is present on pop up for cource "Погружение в разработку под Android"
+        String cource = "Погружение в разработку под Android";
+        pageForTrainings = new PageForTrainings(driver);
+        pageForTrainings.goToCourcesTab();
+        pageForTrainings.openInfoCources(cource);
+        pageForTrainings.pressSubmitYourApplicationButton();
+        pageForTrainings.goToPopUp();
+        assertEquals("Name of fileds is not Имя", "Имя", pageForTrainings.findNmaeforFields().get(0));
+        assertEquals("Name of fileds is not Фамилия", "Фамилия", pageForTrainings.findNmaeforFields().get(1));
+        assertEquals("Name of fileds is not Электронная почта", "Электронная почта", pageForTrainings.findNmaeforFields().get(2));
+        assertEquals("Name of fileds is not Телефон", "Телефон", pageForTrainings.findNmaeforFields().get(3));
+    }
 
 }
