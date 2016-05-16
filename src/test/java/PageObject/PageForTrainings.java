@@ -6,10 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by mperep on 04.05.2016.
@@ -95,5 +92,18 @@ public class PageForTrainings {
         return stringsNames;
     }
 
+   /* public String findNameforFields (String name){
+        WebElement nameOfFields = driver.findElement(fieldsOnPopUp);
+        Map<WebElement, String> Map = new HashMap<WebElement, String>();
+        Map.put(nameOfFields, "Имя");
+        Map.put(nameOfFields,"Фамилия");
+        Map.put(nameOfFields, "Электронная почта");
+        Map.put(nameOfFields,"Телефон");
+        for (WebElement key : Map.keySet()){
+            return Map.get(name);
+        }
+        return Map.get(name);*/
+    }
 
-}
+
+

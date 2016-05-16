@@ -18,7 +18,6 @@ public class BaseClass extends TestCase{
     @BeforeClass
     public void setUp() throws Exception{
         driver = new FirefoxDriver();
-        driver.get("http://skillsup.ua/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 

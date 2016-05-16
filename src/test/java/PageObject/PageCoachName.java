@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class PageCoachName {
     private WebDriver driver;
+    private String baseURL = "http://skillsup.ua/";
     private By memberclass = By.className("name");
     private By infoAboutCoach = By.className("text");
     private By searchheader = By.xpath("//div[@class='greenHeader']");
@@ -24,6 +25,7 @@ public class PageCoachName {
 
     public PageCoachName(WebDriver driver){
         this.driver = driver;
+        driver.get(baseURL);
         PageFactory.initElements(driver, this );
     }
 
