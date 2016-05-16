@@ -24,13 +24,13 @@ public class PageForTrainings {
     private By popUp = By.id("u11508");
     private String cource;
 
-    public PageForTrainings (WebDriver driver){ // constructor which get base URL and go to main page SkillsUp
+    public PageForTrainings(WebDriver driver) { // constructor which get base URL and go to main page SkillsUp
         this.driver = driver;
         driver.get(baseURL);
-        PageFactory.initElements(driver, this );
+        PageFactory.initElements(driver, this);
     }
 
-    public void goToCourcesTab (){ // method move to page "Курсы"
+    public void goToCourcesTab() { // method move to page "Курсы"
         driver.navigate().to(baseURL);
         WebElement educationTab = driver.findElement(training);
         WebElement courcesTab = driver.findElement(cources);
@@ -40,9 +40,9 @@ public class PageForTrainings {
     }
 
 
-    public void openInfoCources(String cource){ // method select list of cources and choose one of them
+    public void openInfoCources(String cource) { // method select list of cources and choose one of them
         List<WebElement> listcource = driver.findElements(titlecources);
-        for (WebElement i: listcource) {
+        for (WebElement i : listcource) {
             if (i.getText().contains(cource)) {
                 i.click();
                 break;
@@ -50,60 +50,57 @@ public class PageForTrainings {
         }
     }
 
-    public String nameOfCources(){ // method find and get cource`s name
+    public String nameOfCources() { // method find and get cource`s name
         System.out.println(driver.findElement(headerofCource).getText());
         return driver.findElement(headerofCource).getText();
     }
 
-    public String nameOfTeacher (){ //method find and get teacher`s name
+    public String nameOfTeacher() { //method find and get teacher`s name
         System.out.println(driver.findElement(teacherName).getText());
         return driver.findElement(teacherName).getText();
     }
 
-    public void pressSubmitYourApplicationButton(){ //method press to button "Оставить заявку"
+    public void pressSubmitYourApplicationButton() { //method press to button "Оставить заявку"
         WebElement submitYouAppButton = driver.findElement(buttonSubmit);
         Actions submitbutton = new Actions(driver);
         submitbutton.moveToElement(submitYouAppButton).click().perform();
     }
 
-    public void goToPopUp(){ // method go to pop up which appears after clicking button "Оставить заявку"
+    /*public void goToPopUp() { // method go to pop up which appears after clicking button "Оставить заявку"
         String parentWindowHandler = driver.getWindowHandle(); // Store your parent window
         String subWindowHandler = null;
 
         Set<String> handles = driver.getWindowHandles(); // get all window handles
         Iterator<String> iterator = handles.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             subWindowHandler = iterator.next();
         }
         driver.switchTo().window(subWindowHandler); // switch to popup window
 
+    }*/
+
+    public void goToPopUp() {
+        for (String handle1 : driver.getWindowHandles()){
+            driver.switchTo().window(handle1);
         }
-    public Boolean popUpIsPresent(){ //method find that pop up is displayed exactly
+    }
+
+    public Boolean popUpIsPresent() { //method find that pop up is displayed exactly
         return driver.findElement(popUp).isDisplayed();
     }
-        //driver.switchTo().window(parentWindowHandler);
+    //driver.switchTo().window(parentWindowHandler);
 
-    public List<String> findNmaeforFields (){ // method find all field`s name which is displayed on pop up
+    public List<String> findNmaeforFields() { // method find all field`s name which is displayed on pop up
         List<WebElement> nameOfFields = driver.findElements(fieldsOnPopUp);
         List<String> stringsNames = new ArrayList<String>();
-        for (WebElement i: nameOfFields){
-            stringsNames.add (i.getText());
+        for (WebElement i : nameOfFields) {
+            stringsNames.add(i.getText());
         }
         return stringsNames;
     }
+}
 
-   /* public String findNameforFields (String name){
-        WebElement nameOfFields = driver.findElement(fieldsOnPopUp);
-        Map<WebElement, String> Map = new HashMap<WebElement, String>();
-        Map.put(nameOfFields, "Имя");
-        Map.put(nameOfFields,"Фамилия");
-        Map.put(nameOfFields, "Электронная почта");
-        Map.put(nameOfFields,"Телефон");
-        for (WebElement key : Map.keySet()){
-            return Map.get(name);
-        }
-        return Map.get(name);*/
-    }
+
 
 
 
