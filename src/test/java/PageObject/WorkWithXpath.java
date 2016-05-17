@@ -18,6 +18,7 @@ public class WorkWithXpath {
     private By row2 = By.xpath(".//*[@id='main']/table[1]/tbody/tr[3]");
     private By points = By.xpath("td[4]");
     private By firsName = By.xpath("td[2]");
+    private String personRow;
 
 
     public WorkWithXpath (WebDriver driver){ // constructor which get base URL and go to main page SkillsUp
@@ -35,7 +36,7 @@ public class WorkWithXpath {
         return row.findElement(points).getText();
     }
 
-     public String findPersonByName(String name) {
+     /*public String findPersonByName(String name) {
          List<WebElement> rows = driver.findElements(allrows);
          WebElement requiredRow=null;
          for (WebElement i : rows) {
@@ -45,6 +46,16 @@ public class WorkWithXpath {
              }
          }
          return requiredRow.getText();
-     }
+     }*/
 
+    public String findPersonByName(String name) {
+        List<WebElement> rows = driver.findElements(allrows);
+        for (WebElement i : rows) {
+            if (i.findElement(firsName).getText().equals(name)) {
+                personRow = i.getText();
+                break;
+            }
+        }
+        return personRow;
+    }
 }
