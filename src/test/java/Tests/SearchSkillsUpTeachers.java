@@ -39,7 +39,7 @@ public class SearchSkillsUpTeachers extends BaseClass{
     public void testFoundTeacherKarpov() throws NoSuchElementException {
         skillsUpMainPage = new SkillsUpMainPage(driver);
         skillsUpMainPage.goToCoachPage();
-        assertFalse("Karpov should not be present in coach team", skillsUpMainPage.findCoachNmae().contains("Артем Карпов"));
+        assertTrue("Karpov should not be present in coach team", skillsUpMainPage.findCoachNmae().contains("Артем Карпов"));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class SearchSkillsUpTeachers extends BaseClass{
     @Test
     public void testCheckCoachCourcesForChokan() throws Exception{
         String nameCoach = "Михаил Чокан";
-        String coachCources = "Координатор учебного курса";
+        String coachCources = "Руководитель учебного курса в компании SkillsUp";
         skillsUpMainPage = new SkillsUpMainPage(driver);
         pageCoachName = new PageCoachName(driver);
         skillsUpMainPage.goToCoachPage();

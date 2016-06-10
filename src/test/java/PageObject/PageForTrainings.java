@@ -14,14 +14,14 @@ import java.util.*;
 public class PageForTrainings {
     private WebDriver driver;
     private String baseURL = "http://skillsup.ua/";
-    private By training = By.xpath("//a[@href='http://skillsup.ua/training.aspx']");
-    private By cources = By.xpath("//a[@href='http://skillsup.ua/training/courses.aspx']");
-    private By titlecources = By.cssSelector("div.title>a");
+    private By training = By.xpath(".//*[@id='mi1']");
+    private By cources = By.cssSelector("#menu1078>ul>li>a");
+    private By titlecources = By.cssSelector(".title>a");
     private By headerofCource = By.className("greenHeader");
     private By teacherName = By.xpath("//div[@class='name']");
     private By buttonSubmit = By.xpath("//a[contains(.,' Оставить заявку')]");
-    private By fieldsOnPopUp = By.className("header");
     private By popUp = By.id("u11508");
+    private By text = By.cssSelector(".cell.left.padTopBottom");
     private String cource;
 
     public PageForTrainings(WebDriver driver) { // constructor which get base URL and go to main page SkillsUp
@@ -66,18 +66,16 @@ public class PageForTrainings {
         submitbutton.moveToElement(submitYouAppButton).click().perform();
     }
 
-    /*public void goToPopUp() { // method go to pop up which appears after clicking button "Оставить заявку"
-        String parentWindowHandler = driver.getWindowHandle(); // Store your parent window
-        String subWindowHandler = null;
+    public boolean costOfCource(String cost){
+        WebElement costCource = driver.findElement(text);
+        return costCource.getText().contains(cost);
+    }
 
-        Set<String> handles = driver.getWindowHandles(); // get all window handles
-        Iterator<String> iterator = handles.iterator();
-        while (iterator.hasNext()) {
-            subWindowHandler = iterator.next();
-        }
-        driver.switchTo().window(subWindowHandler); // switch to popup window
+    public boolean sizeOfCource(String fullsize){
+        WebElement sizeCource = driver.findElement(text);
+        return sizeCource.getText().contains(fullsize);
+    }
 
-    }*/
 
     public void goToPopUp() {
         for (String handle1 : driver.getWindowHandles()){
@@ -88,16 +86,7 @@ public class PageForTrainings {
     public Boolean popUpIsPresent() { //method find that pop up is displayed exactly
         return driver.findElement(popUp).isDisplayed();
     }
-    //driver.switchTo().window(parentWindowHandler);
 
-    public List<String> findNmaeforFields() { // method find all field`s name which is displayed on pop up
-        List<WebElement> nameOfFields = driver.findElements(fieldsOnPopUp);
-        List<String> stringsNames = new ArrayList<String>();
-        for (WebElement i : nameOfFields) {
-            stringsNames.add(i.getText());
-        }
-        return stringsNames;
-    }
 }
 
 
